@@ -9,7 +9,6 @@ export function ThemedView({ style, children, ...otherProps }: ViewProps) {
     <View style={[{ backgroundColor: colors.background, flex: 1 }, style]} {...otherProps}>
       {/* CAPA DE PATRÓN REFINADO */}
       <View style={StyleSheet.absoluteFill} pointerEvents="none">
-        {/* Círculo Superior Izquierdo más pequeño */}
         <View 
           style={[
             styles.shape, 
@@ -18,14 +17,14 @@ export function ThemedView({ style, children, ...otherProps }: ViewProps) {
               opacity: isDark ? 0.05 : 0.02, 
               top: 40, 
               left: -30,
-              width: 120,    // Reducido de 300 a 120
-              height: 120,   // Reducido de 300 a 120
+              width: 100,    // Reducido de 300 a 100
+              height: 100,   // Reducido de 300 a 100
               borderRadius: 60,
               borderWidth: 15 // Trazo más fino
             }
           ]} 
         />
-        {/* Círculo Central Derecho */}
+        
         <View 
           style={[
             styles.shape, 
@@ -34,8 +33,8 @@ export function ThemedView({ style, children, ...otherProps }: ViewProps) {
               opacity: isDark ? 0.04 : 0.02, 
               top: '40%', 
               right: -40, 
-              width: 180, 
-              height: 180,
+              width: 120, 
+              height: 120,
               borderRadius: 90,
               borderWidth: 20 
             }
@@ -57,6 +56,25 @@ export function ThemedView({ style, children, ...otherProps }: ViewProps) {
             }
           ]} 
         />
+        {/* Patrón estilo WhatsApp: Burbujas chat pequeñas repetidas */}
+        {Array.from({ length: 20 }, (_, i) => (
+          <View 
+            key={i}
+            style={[
+              styles.shape, 
+              { 
+                backgroundColor: colors.text, 
+                opacity: isDark ? 0.02 + Math.random() * 0.03 : 0.005 + Math.random() * 0.01, 
+                top: `${Math.random() * 100}%`, 
+                left: `${Math.random() * 100}%`,
+                width: 20 + Math.random() * 30, // Tamaños entre 20-50
+                height: 15 + Math.random() * 25, // Alturas entre 15-40
+                borderRadius: 10 + Math.random() * 10, // Bordes redondeados variables
+                transform: [{ rotate: `${Math.random() * 60 - 30}deg` }] // Rotaciones entre -30 y 30 grados
+              }
+            ]} 
+          />
+        ))}
       </View>
       
       {children}
