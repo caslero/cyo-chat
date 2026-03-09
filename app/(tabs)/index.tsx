@@ -1,98 +1,277 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { ScreenContainer } from "@/components/themed/ScreenContainer";
+import { ThemedText } from "@/components/themed/ThemedText";
 
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
-
+// En app/index.tsx
 export default function HomeScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
+    <ScreenContainer> 
+       <ThemedText style={{ marginTop: 60 }}>Contenido de la App</ThemedText>
+    </ScreenContainer>
+  );
+}
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+
+/** 
+import { StyleSheet, View } from 'react-native';
+import { ScreenContainer } from '@/components/themed/ScreenContainer';
+import { ThemedText } from '@/components/themed/ThemedText';
+import { useThemeColor } from '@/constants/Colors';
+
+export default function LoginScreen() {
+  const colors = useThemeColor();
+
+  return (
+    <ScreenContainer scrollable style={styles.container}>
+      <View style={styles.header}>
+    
+        <ThemedText style={styles.title}>Bienvenido</ThemedText>
+        <ThemedText style={styles.subtitle}>Inicia sesión para continuar</ThemedText>
+      </View>
+
+      <View style={styles.form}>
+        
+        <View style={[styles.inputPlaceholder, { borderColor: colors.border }]}>
+          <ThemedText style={{ opacity: 0.5 }}>Correo electrónico...</ThemedText>
+        </View>
+        
+        <View style={[styles.inputPlaceholder, { borderColor: colors.border }]}>
+          <ThemedText style={{ opacity: 0.5 }}>Contraseña...</ThemedText>
+        </View>
+      </View>
+    </ScreenContainer>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  container: {
+    paddingHorizontal: 24,
+    justifyContent: 'center',
   },
-  stepContainer: {
-    gap: 8,
+  header: {
+    alignItems: 'center',
+    marginBottom: 40,
+  },
+  title: {
+    fontSize: 32,
+    fontWeight: 'bold',
     marginBottom: 8,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  subtitle: {
+    fontSize: 16,
+    opacity: 0.7,
+  },
+  form: {
+    gap: 16,
+  },
+  inputPlaceholder: {
+    height: 55,
+    borderWidth: 1,
+    borderRadius: 12,
+    justifyContent: 'center',
+    paddingHorizontal: 16,
   },
 });
+*/
+
+
+
+// // app/(tabs)/index.tsx
+// //import { useTheme } from "@/contexts/ThemeContext";
+// import { useTheme } from "@/hooks/useTheme";
+// import { useTranslation } from "react-i18next";
+// import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+
+// export default function HomeScreen() {
+//   const { theme, isDark, toggleTheme } = useTheme();
+
+//   const { t } = useTranslation();
+
+//   return (
+//     <View
+//       style={[styles.container, { backgroundColor: theme.colors.background }]}
+//     >
+      
+//       <View style={[styles.card, { backgroundColor: theme.colors.surface }]}>
+//         <Text style={[styles.title, { color: theme.colors.text }]}>
+//           {isDark ? "🌙 Modo Oscuro" : "☀️ Modo Claro"}
+//         </Text>
+
+//         <TouchableOpacity
+//           style={[styles.button, { backgroundColor: theme.colors.primary }]}
+//           onPress={toggleTheme}
+//         >
+//           <Text style={styles.buttonText}>{t("change_theme")}</Text>
+//         </TouchableOpacity>
+//       </View>
+//     </View>
+//   );
+// }
+
+// // ...styles (igual)
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     justifyContent: "center",
+//     alignItems: "center",
+//     padding: 20,
+//   },
+//   card: {
+//     padding: 24,
+//     borderRadius: 16,
+//     width: "100%",
+//     alignItems: "center",
+//   },
+//   title: {
+//     fontSize: 24,
+//     fontWeight: "bold",
+//     marginBottom: 24,
+//   },
+//   button: {
+//     padding: 16,
+//     borderRadius: 12,
+//     width: "100%",
+//     alignItems: "center",
+//   },
+//   buttonText: {
+//     color: "white",
+//     fontSize: 16,
+//     fontWeight: "600",
+//   },
+// });
+
+/**
+import { useTheme } from "@/hooks/useTheme";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+
+export default function HomeScreen() {
+  const { theme, isDark, toggleTheme, themeMode, followSystem } = useTheme();
+
+  return (
+    <View
+      style={[styles.container, { backgroundColor: theme.colors.background }]}
+    >
+      <View style={[styles.card, { backgroundColor: theme.colors.surface }]}>
+        <Text style={[styles.title, { color: theme.colors.text }]}>
+          Tema actual: {isDark ? "🌙 Oscuro" : "☀️ Claro"}
+        </Text>
+
+        <Text style={[styles.subtitle, { color: theme.colors.textSecondary }]}>
+          Modo:{" "}
+          {themeMode === null ? "Siguiendo sistema" : `Forzado ${themeMode}`}
+        </Text>
+
+        <TouchableOpacity
+          style={[styles.button, { backgroundColor: theme.colors.primary }]}
+          onPress={toggleTheme}
+        >
+          <Text style={styles.buttonText}>
+            Cambiar a {isDark ? "claro" : "oscuro"}
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[
+            styles.button,
+            { backgroundColor: theme.colors.surfaceSecondary },
+          ]}
+          onPress={followSystem}
+        >
+          <Text style={[styles.buttonText, { color: theme.colors.text }]}>
+            Seguir sistema
+          </Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20,
+  },
+  card: {
+    padding: 24,
+    borderRadius: 16,
+    width: "100%",
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 4,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 8,
+  },
+  subtitle: {
+    fontSize: 16,
+    marginBottom: 24,
+  },
+  button: {
+    padding: 16,
+    borderRadius: 12,
+    width: "100%",
+    alignItems: "center",
+    marginBottom: 12,
+  },
+  buttonText: {
+    color: "white",
+    fontSize: 16,
+    fontWeight: "600",
+  },
+});
+ */
+
+/**
+import { Link, useRouter } from "expo-router";
+import React, { useState } from "react";
+import { Button, StyleSheet, Text, TextInput, View } from "react-native";
+
+export default function HomeScreen() {
+  const [name, setName] = useState("");
+  const router = useRouter();
+
+  const handleLogin = async () => {
+    if (!name) return;
+    // No backend logic: just pass name as query param to chat
+    router.push(`/chat?name=${encodeURIComponent(name)}`);
+  };
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Login</Text>
+      <TextInput
+        placeholder="Tu nombre"
+        value={name}
+        onChangeText={setName}
+        style={styles.input}
+      />
+      <Button title="Entrar" onPress={handleLogin} />
+      <View style={styles.register}>
+        <Text>¿No tienes cuenta? </Text>
+        <Link href="/register">Registrarse</Link>
+      </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: { flex: 1, justifyContent: "center", padding: 16 },
+  title: { fontSize: 24, marginBottom: 12 },
+  input: {
+    borderWidth: 1,
+    borderColor: "#ccc",
+    padding: 8,
+    marginBottom: 12,
+    borderRadius: 6,
+    color: "#fff",
+  },
+  register: { flexDirection: "row", marginTop: 12, alignItems: "center" },
+});
+*/

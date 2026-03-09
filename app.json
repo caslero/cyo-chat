@@ -9,7 +9,8 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "userInterfaceStyle": "automatic"
     },
     "android": {
       "adaptiveIcon": {
@@ -18,8 +19,9 @@
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
+      "userInterfaceStyle": "automatic",
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "package": "com.anonymous.chatclientreactnative"
     },
     "web": {
       "output": "static",
@@ -27,6 +29,9 @@
     },
     "plugins": [
       "expo-router",
+      "expo-localization",
+      "expo-system-ui",
+      "expo-navigation-bar",
       [
         "expo-splash-screen",
         {
@@ -35,6 +40,7 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff",
           "dark": {
+            "image": "./assets/images/splash-icon.png",
             "backgroundColor": "#000000"
           }
         }
