@@ -1,6 +1,6 @@
 // features/auth/thunks/logOut.ts
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { logout } from "@/store/features/auth/authSlice";
+import { router } from "expo-router";
 
 // Definimos correctamente la interfaz de respuesta
 interface LogoutResponse {
@@ -32,7 +32,7 @@ export const logOut = createAsyncThunk<
 
     if (!response.ok) {
       if (response.status === 401) {
-        dispatch(logout());
+        router.replace("/");
         return rejectWithValue("Sesión expirada");
       }
       // Usamos data.message si existe, sino mensaje genérico
@@ -40,7 +40,7 @@ export const logOut = createAsyncThunk<
     }
 
     if (data?.status === "ok") {
-      dispatch(logout());
+      router.replace("/");
       return true;
     } else {
       return rejectWithValue(data?.message ?? "Error al cerrar sesión");

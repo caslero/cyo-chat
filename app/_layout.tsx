@@ -12,6 +12,9 @@ import * as SystemUI from "expo-system-ui";
 import * as SplashScreen from "expo-splash-screen";
 import { Provider } from "react-redux";
 import { store } from "@/store/store";
+import { useAppSecurity } from "@/hooks/useAppSecurity";
+import { useIdleTimer } from "@/hooks/useIdleTimer";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 // Mantener la splash screen visible mientras cargan recursos
 SplashScreen.preventAutoHideAsync();
@@ -19,6 +22,9 @@ SplashScreen.preventAutoHideAsync();
 function RootLayoutNav() {
   const systemColorScheme = useColorScheme();
   const isDark = systemColorScheme === "dark";
+
+  useAppSecurity();
+  useIdleTimer(1);
 
   useEffect(() => {
     // Ocultar la splash screen una vez que el layout está listo
@@ -57,11 +63,13 @@ function RootLayoutNav() {
 
 export default function RootLayout() {
   return (
-    <Provider store={store}>
-      <I18nProvider>
-        <RootLayoutNav />
-      </I18nProvider>
-    </Provider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <Provider store={store}>
+        <I18nProvider>
+          <RootLayoutNav />
+        </I18nProvider>
+      </Provider>
+    </GestureHandlerRootView>
   );
 }
 
